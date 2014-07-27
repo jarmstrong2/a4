@@ -43,7 +43,32 @@
 % ----------------------------------------------------------------
 % TODO: Write your answer to the question below. 
 % ----------------------------------------------------------------
+~\\
+\textbf{Claim:} The mute prison problem is NP-complete.\\
+\textbf{Proof:}\\
+\underline{1.} Show the mute prison problem is NP.\\
+\underline{2.} Show the mute prison problem is NP-hard.\\
 
+\underline{1.} Suppose we are given a certificate S and have access to value k and matrix T. We can verify that the certificate is satisfiable in the following way. Suppose each element in S represents an inmate. Verification would involve iterating on each inmate in the following way:\\
+\begin{algorithm}[H]
+ \LinesNumbered 
+\For {inmate in S}{
+j = 0\;
+\While{j $\leqslant$ m}{
+\If{T[inmate, j]}{
+\For {(otherinmate $\neq$ inmate) in S}{
+\If{T[otherinmate, j] = 0}{
+	S is not a subset of inmates who do don't speak the same language\;
+}
+}
+}
+j++\;
+}
+}
+\end{algorithm}
+Clearly, the verification that S is a subset where no two inmates speak the same language can run in polynomial time O(mn$^{2}$). Once this verification if complete all that is left to do is to verify that $\mid$S$\mid$ $\geqslant$ k, which is O(1). Therefore the mute prison problem is NP.\\
+
+\underline{2.}
 % ----------------------------------------------------------------
 % Answer ends
 % ----------------------------------------------------------------
