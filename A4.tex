@@ -16,8 +16,8 @@
 % ----------------------------------------------------------------
 % TODO: Enter the assignment number, your name, and your student number below
 % ----------------------------------------------------------------
-\AssignmentName{3}
-\QuestionCount{8}
+\AssignmentName{4}
+\QuestionCount{4}
 \StudentName{John Armstrong, Henry Ku}
 \StudentNumber{993114492\textbackslash g2jarmst, 998551348\textbackslash g2kuhenr}
 
@@ -30,7 +30,7 @@
 % TODO: Write your acknowledgements below.
 % ----------------------------------------------------------------
 
-"We have used lecture notes, the CLRS textbook, and wikipedia (specifically for polytope, gradient and normal definitions). Otherwise, we declare that we have not used any outside help in completing this assignment."
+"We declare that we have not used any outside help in completing this assignment."
 
 % ----------------------------------------------------------------
 % Aacknowledgements ends
@@ -44,37 +44,6 @@
 % TODO: Write your answer to the question below. 
 % ----------------------------------------------------------------
 
-\textbf{Construction:}\\
-To construct a family of graphs where G(V, E) has exponential number of minimum
-cuts between source and terminal, we start with n as the number of vertices 
-that appear between the source and the terminal, we will also assume that the capacity 
-on each edge is 1. If n = 0 then there are no vertices between the source and the 
-terminal and thus V = \{s, t\} and E = $\emptyset$, Clearly, a 
-single minimum-cut exists since we can only have s $\in$ S and t $\in$ T, no edges exist to place a capacity on, so indeed 2$^{\mid V \mid - 2}$ = 2$^{0}$ = 1.\\ 
-
-For arbitrary n, n $\geqslant$ 1, and n = $\mid$V$\mid$ - 2, then G(V, E) would be constructed such that V = 
-\{s, t, v$_{1}$, v$_{2}$, ..., v$_{n}$\} and E = \mbox{\{(s, v$_{1}$), (v$_{1}$, t), (s, v$_{2}$), (v$_{2}$, t), ..., (s, v$_{n}$), (v$_{n}$, t)\}} (i.e. the only edges connected to a vertex are those that have s as their startpoint, or t as their endpoint). This arrangement is chosen because every cut in G(V, E) will be a minimum cut. By the arrangement of G(V, E), and since all capacities are the same. Whether a vertex v is or is not in the set S will not affect the summation of outgoing edge capacities, either the capacity from (v, t) or from (s, v), respectively, will be used in computing the minimum cut. Therefore we have a maximum number of minimum cuts in G.\\ 
-
-\textbf{Proof of exponential minimum cuts:}\\
-From the description above, in our construction of G(V, E), for any v$_{i}$ $\in$ V, v$_{i}$ may or may not be contained within the set that describes a minimum cut in G. If we think of each minimum-cut as being described by a binary string of size n, (q$_{v_{1}}$, q$_{v_{2}}$, ..., q$_{v_{n}}$), then we define each binary digit as:
-\[
- q_{v_{i}} = 
-\begin{cases} 
-      \hfill 1 \hfill & \text{ if v$_{i}$ $\in$ minimum cut set }\\
-      \hfill 0 \hfill & \text{ if v$_{i}$ $\notin$ minimum cut set} \\
-  \end{cases}
-\]\\
-\underline{Base:} Let n = 1, and let the B$_{1}$ be the set of binary strings describing all possible minimum cuts in G(V, E). Then B$_{1}$ contains two binary strings such that B$_{1}$ = \{0, 1\}.
-Indeed, $\mid$B$_{1}$$\mid$ = 2 = 2$^{n}$ = 2$^{\mid V \mid - 2}$.\\
-\underline{IH:} Let n = i, i \textgreater ~1, and let B$_{i}$ be the set of binary strings describing the minimum cuts in G(V, E), such that V = 
-\{s, t, v$_{1}$, v$_{2}$, ..., v$_{i}$\} and E = \mbox{\{(s, v$_{1}$), (v$_{1}$, t), (s, v$_{2}$), (v$_{2}$, t), ..., (s, v$_{i}$), (v$_{i}$, t)\}}. Suppose that $\mid$B$_{i}$$\mid$ = 2$^{i}$ = 2$^{\mid V \mid - 2}$.
-\\
-\underline{IS:} Let n = i + 1, it follows from the construction description that V' = 
-\{s, t, v$_{1}$, v$_{2}$, ..., v$_{i}$, v$_{i + 1}$\} and E' = \mbox{\{(s, v$_{1}$), (v$_{1}$, t), (s, v$_{2}$), (v$_{2}$, t), ..., (s, v$_{i}$), (v$_{i}$, t), (s, v$_{i + 1}$), (v$_{i + 1}$, t)\}}. Clearly, the addition of v$_{i + 1}$ extends G(V, E) to G(V', E'). The minimum cuts in G(V', E') are composed from the minimum cuts in G(V, E) except that v$_{i + 1}$ is either inside or outside these previous cuts. Thus, to compute the set of minimum cuts as binary strings, B$_{i + 1}$, simply take each binary string in B$_{i}$ and append a 0 to be a minimum cut where v$_{i + 1}$ is outside the set, and then again take each binary string in B$_{i}$ and append a 1 to be a minimum cut where v$_{i + 1}$ is inside the set. Thus, $\mid$B$_{i + 1}$$\mid$ = 2 * ($\mid$B$_{i}$$\mid$) = 2 * 2$^{i}$ = 2$^{i + 1}$.
-\\
-By proof of induction this construction will have exponential minimum cuts between the source and the terminal. $\blacksquare$
-\\
-
 % ----------------------------------------------------------------
 % Answer ends
 % ----------------------------------------------------------------
@@ -84,42 +53,6 @@ By proof of induction this construction will have exponential minimum cuts betwe
 % ----------------------------------------------------------------
 % TODO: Write your answer to the question below. 
 % ----------------------------------------------------------------
-
-\textbf{Claim:}\\
-Function f, such that f(S) is the number of edges (u, v) with u $\in$ S, v $\in$ V$\backslash$S, is 
-submodular.\\
-
-\textbf{Proof:}\\
-Using the fact provided in the question, all that is necessary to show that f is 
-submodular is to show that for any two subsets A, B $\subseteq$ V, \mbox{f(A) + 
-f(B) $\geqslant$ f(A $\cup$ B) + f(A $\cap$ B)}.\\
-
-Consider the set of edges in G(V, E), E = \{e$_{1}$, e$_{2}$, ..., e$_{n}$\}. If we think of f(S) as an iterative algorithm that goes through each e$_{i}$ $\in$ E and checks whether the startpoint of e$_{i}$ $\in$ S and whether the endpoint of e$_{i}$ $\in$ V$\backslash$S. Then we have f$_{e_{i}}$(S):\\
-\[
- f_{e_{i}}(S) = 
-\begin{cases} 
-      \hfill 1 \hfill & \text{ if startpoint of e$_{i}$ in S and endpoint of e$_{i}$ in V$\backslash$S  } \\
-      \hfill 0 \hfill & \text{ otherwise} \\
-  \end{cases}
-\]\\
-And so, f(S) = $\sum_{i = 1}^{n}$ f$_{e_{i}}$(S). Suppose (u, v) is an arbitrary edge in E, also suppose A, B are some arbitrary subsets of V. We wish to show in all cases, however vertices u and v appear or do not appear in A and/or B, that \mbox{f$_{(u,v)}$(A) + f$_{(u,v)}$(B) $\geqslant$ f$_{(u,v)}$(A $\cup$ B) + f$_{(u,v)}$(A $\cap$ B)}:\\
-\hspace*{1cm}\parbox{16cm}{\underline{Case 1: u $\notin$ A and u $\notin$ B:}
-Clearly, u $\notin$ (A $\cup$ B) and u $\notin$ (A $\cap$ B), thus, f$_{(u,v)}$(A) = f$_{(u,v)}$(B) = f$_{(u,v)}$(A $\cup$ B) = f$_{(u,v)}$(A $\cap$ B) = 0. So, \mbox{f$_{(u,v)}$(A) + f$_{(u,v)}$(B) $\geqslant$ f$_{(u,v)}$(A $\cup$ B) + f$_{(u,v)}$(A $\cap$ B)} holds.\\
-\underline{Case 2: u $\in$ A and u $\notin$ B (The case for u $\in$ B and u $\notin$ A is symmetric):}\\
-\hspace*{1cm}\parbox{15cm}{\underline{Case 2.1: v $\in$ A:}
-Clearly, u, v $\in$ (A $\cup$ B) and u $\notin$ (A $\cap$ B), it follows that f$_{(u,v)}$(A) = f$_{(u,v)}$(B) = f$_{(u,v)}$(A $\cup$ B) = f$_{(u,v)}$(A $\cap$ B) = 0. So, \mbox{f$_{(u,v)}$(A) + f$_{(u,v)}$(B) $\geqslant$ f$_{(u,v)}$(A $\cup$ B) + f$_{(u,v)}$(A $\cap$ B)} holds.\\
-\underline{Case 2.2: v $\notin$ A and v $\in$ B:} So, f$_{(u,v)}$(A)  = 1 and f$_{(u,v)}$(B) = 0, but since u, v $\in$ (A $\cup$ B) and u $\notin$ (A $\cap$ B), then f$_{(u,v)}$(A $\cup$ B) = f$_{(u,v)}$(A $\cap$ B) = 0. So, \mbox{f$_{(u,v)}$(A) + f$_{(u,v)}$(B) $\geqslant$ f$_{(u,v)}$(A $\cup$ B) + f$_{(u,v)}$(A $\cap$ B)} holds.\\
-\underline{Case 2.3: v $\notin$ A and v $\notin$ B:} Again, f$_{(u,v)}$(A)  = 1 and f$_{(u,v)}$(B) = 0. Also, u $\in$ (A $\cup$ B) and v $\notin$ (A $\cup$ B), then f$_{(u,v)}$(A $\cup$ B) = 1.
-Again, u $\notin$ (A $\cap$ B), then f$_{(u,v)}$(A $\cap$ B) = 0. So, \mbox{f$_{(u,v)}$(A) + f$_{(u,v)}$(B) $\geqslant$ f$_{(u,v)}$(A $\cup$ B) + f$_{(u,v)}$(A $\cap$ B)} holds.\\
-}
-\underline{Case 3: u $\in$ A and u $\in$ B:}\\
-\hspace*{1cm}\parbox{15cm}{\underline{Case 3.1: v $\in$ A and v $\in$ B:} Since u, v $\in$ A and B, then f$_{(u,v)}$(A) = f$_{(u,v)}$(B) = 0. Also, u, v $\in$ \mbox{(A $\cup$ B)} and (A $\cap$ B), then f$_{(u,v)}$(A $\cup$ B) = f$_{(u,v)}$(A $\cap$ B) = 0. So, \mbox{f$_{(u,v)}$(A) + f$_{(u,v)}$(B) $\geqslant$ f$_{(u,v)}$(A $\cup$ B) + f$_{(u,v)}$(A $\cap$ B)} holds.\\
-\underline{Case 3.2: v $\notin$ A and v $\in$ B (The case for v $\notin$ B and v $\in$ A is symmetric):} It follows that f$_{(u,v)}$(A) = 1 and f$_{(u,v)}$(B) = 0. Since u, v $\in$ (A $\cup$ B) then f$_{(u,v)}$(A $\cup$ B) = 0, but u $\in$ 
-(A $\cap$ B) and v $\notin$ (A $\cap$ B), thus f$_{(u,v)}$(A $\cap$ B) = 1. Again, \mbox{f$_{(u,v)}$(A) + f$_{(u,v)}$(B) $\geqslant$ f$_{(u,v)}$(A $\cup$ B) + f$_{(u,v)}$(A $\cap$ B)} holds.\\
-\underline{Case 3.3: v $\notin$ A and v $\notin$ B:} Clearly, f$_{(u,v)}$(A) = 1 and f$_{(u,v)}$(B) = 1. Also, u $\in$ (A $\cup$ B) and (A $\cap$ B), but v $\notin$ (A $\cup$ B) and (A $\cap$ B), then f$_{(u,v)}$(A $\cup$ B) = f$_{(u,v)}$(A $\cap$ B) = 1. Then, \mbox{f$_{(u,v)}$(A) + f$_{(u,v)}$(B) $\geqslant$ f$_{(u,v)}$(A $\cup$ B) + f$_{(u,v)}$(A $\cap$ B)} holds.
-}
-}\\
-In all cases in which the vertices of some edge (u, v) $\in$ E might appear in A, B $\subseteq$ V it has been shown that \mbox{f$_{(u,v)}$(A) + f$_{(u,v)}$(B) $\geqslant$ f$_{(u,v)}$(A $\cup$ B) + f$_{(u,v)}$(A $\cap$ B)} holds. It must follow then that \mbox{$\sum_{i = 1}^{n}$ f$_{e_{i}}$(A) + $\sum_{i = 1}^{n}$ f$_{e_{i}}$(B) $\geqslant$} $\sum_{i = 1}^{n}$ f$_{e_{i}}$(A $\cup$ B) + $\sum_{i = 1}^{n}$ f$_{e_{i}}$(A $\cap$ B) $\rightarrow$ \mbox{f(A) + f(B) $\geqslant$ f(A $\cup$ B) + f(A $\cap$ B)}. Clearly, function f is submodular by the equivalence of submodular functions. $\blacksquare$
 
 % ----------------------------------------------------------------
 % Answer ends
@@ -131,51 +64,6 @@ In all cases in which the vertices of some edge (u, v) $\in$ E might appear in A
 % TODO: Write your answer to the question below. 
 % ----------------------------------------------------------------
 
-Consider the restructuring of LP formulation of maximum flow into standard form:\\
-maximize: $\vec{c}\cdot\vec{x}$\\
-subject to: A$\vec{x}$ $\leqslant$ $\vec{b}$, $\vec{x}$ $\geqslant$ 0.\\
-Suppose this LP operates on G(V, E) such that paths P = \{p$_{1}$, ..., p$_{n}$\} and 
-E = \{e$_{1}$, ..., e$_{m}$\}.\\
-Let $\vec{c}$ = [1, ..., 1], such that $\mid$$\vec{c}$$\mid$ = n.\\
-Let $\vec{x}$ = [x$_{1}$, ..., x$_{n}$], such that x$_{i}$ = f$_{p_{i}}$, maximum flow along path p$_{i}$.\\
-Let A be and m x n matrix and let A be defined as follows:
-\[
-A[i, j] = 
-\begin{cases} 
-      \hfill 1 \hfill & \text{edge e$_{i}$ appears on path p$_{j}$} \\
-      \hfill 0 \hfill & \text{edge e$_{i}$ does not appears on path p$_{j}$} \\
-  \end{cases}
-\]\\
-Let $\vec{b}$ = [c(e$_{1}$), ..., c(e$_{m}$)], such that $\mid$$\vec{b}$$\mid$ = m.\\ 
-
-Using the restructured LP, we construct the dual as follows:\\
-minimize: $\vec{b}\cdot\vec{y}$\\
-subject to: A$^{t}$$\vec{y}$ $\geqslant$ $\vec{c}$, $\vec{y}$ $\geqslant$ 0.\\
-Let $\vec{y}$ = [y$_{1}$, ..., y$_{m}$], y$_{i}$ is a value associated with e$_{i}$.\\ 
-Again, we define $\vec{c}$ and $\vec{b}$ as the same in the original construction.\\
-Now, A$^{t}$ is an n x m matrix, and so A$^{t}$ is defined as follows:\\
-\[
-A^{t}[i, j] = 
-\begin{cases} 
-      \hfill 1 \hfill & \text{in path p$_{i}$ the edge e$_{j}$ appears} \\
-      \hfill 0 \hfill & \text{in path p$_{i}$ the edge e$_{j}$ does not appear} \\
-  \end{cases}
-\]\\
-The conclusion for the dual LP is that the objective function and constraints 
-represent a construction of a max-flow min-cut, such that when the dual LP
-is complete its solution will equal the max-flow calculated by the original LP.
-It can now be stated:
-\[
-y_{i} = 
-\begin{cases} 
-      \hfill 1 \hfill & \text{edge e$_{i}$ connects sets S and T*} \\
-      \hfill 0 \hfill & \text{edge e$_{i}$ does not connect sets S and T*} \\
-  \end{cases}
-\]
-\tiny{*clearly S and T represent the set of vertices separated by the minimum cut of G(V, E).}\\
-\normalsize{
-Then the objective function represents the summation of the capacity of those edges where y$_{i}$ = 1, and the summation will be the maximum flow in the network G(V, E). The n path constraints, A$^{t}$$\vec{y}$ $\geqslant$ $\vec{c}$, represent the fact that on each path there exists at least one edge that connects set S to set T. Thus, for path p$_{i}$, \mbox{$\sum_{j = 1}^{m}$ a$_{ij}$y$_{j}$ $\geqslant$ 1.}} 
-  
 % ----------------------------------------------------------------
 % Answer ends
 % ----------------------------------------------------------------
@@ -186,250 +74,9 @@ Then the objective function represents the summation of the capacity of those ed
 % TODO: Write your answer to the question below. 
 % ----------------------------------------------------------------
 
-Polytope P is represented by Ax $\leqslant$ b. Let x $\in$ 
-$\mathbb{R}^{n}$, so x is a point within P and so Ax $\leqslant$ b holds.
-More specifically, let A be an m x n matrix, and b a series of m constants, such that 
-a$_{i1}$x$_{1}$ + ... + a$_{in}$x$_{n}$ $\leqslant$ b$_{i}$ represents a closed half-space for each
-facet of the polytope, so that when all constraints are combined they represent all 
-internal  and boundary points of P.*\\
-
-The LP must be designed so that we find a centre point y of a ball in P, such that all points on the surface of the ball that intersect the plane where P exists are also in P. Suppose some point x exists at the border of P, then for some i that represents the facet on which x exists, we have a$_{i1}$x$_{1}$ + ... + a$_{in}$x$_{n}$ = b$_{i}$. So, if the ball is the largest possible ball to fit in P the surface points must be as close to the boundaries as can be.\\
-
-Suppose that $\vec{a}$$_{i}$ = [a$_{i1}$, ..., a$_{in}$] is a unit vector for some facet i, such that $\lVert$$\vec{a}$$_{i}$$\rVert$ = 1. Indeed, $\vec{a}$$_{i}$ is the gradient unit vector to the half-space represented by a$_{i1}$x$_{1}$ + ... + a$_{in}$x$_{n}$ $\leqslant$ b$_{i}$, its direction is also perpendicular to the surface of the half-space, and therefore the facet face. Also, as a gradient/normal vector, $\vec{a}$$_{i}$ points in the direction outside the closed half-space. To discover if the ball at center y with radius r $\in$ $\mathbb{R}$ can fit in P, we check for each facet i if the surface point z$_{i}$ = ($\vec{a}$$_{i}$*r + y) is within P. To do this we use the constraint a$_{i1}$z$_{i1}$ + ... + a$_{in}$z$_{in}$ $\leqslant$ b$_{i}$. To explain z$_{i}$ further, $\vec{a}$$_{i}$*r is an r length vector that when added to y, projects a point to the surface or boundary of the ball and is the point on the ball closest to facet i when the ball is within P. In order to find the largest such ball, the LP must be designed to calculate both the ball's maximum radius r and its optimal centre point y. This is done by establishing z$_{i}$'s such that for all i, given constraints a$_{i1}$z$_{i1}$ + ... + a$_{in}$z$_{in}$ $\leqslant$ b$_{i}$, we want a$_{i1}$z$_{i1}$ + ... + a$_{in}$z$_{in}$ to be as close as possible to b$_{i}$ for some maximum r and optimal centre point y.\\
-
-Thus, the LP is:\\
-\textbf{maximize:} \\r\\
-\textbf{subject to:} \\
-$\vec{a}_{i} ~\cdot$ ($\vec{a}$$_{i}$*r + y) $\leqslant$ b$_{i}$, $\forall$ i, 1 $\leqslant$ i $\leqslant$ m\\ r $\geqslant$ 0.\\
-
-\tiny{*explanation of polotope taken from wikipedia, http:$\backslash$$\backslash$en.wikipedia.org$\backslash$wiki$\backslash$Convex\_polytope.}\\
-\normalsize{}
 % ---------------------------------------------------------------
 % Answer ends
 % ----------------------------------------------------------------
 
-\newpage
-\item[Q5.]
-% ----------------------------------------------------------------                                                                               
-% TODO: Write your answer to the question below.                                                                                                 
-% ----------------------------------------------------------------                                                                               
-Suppose we have primal LP's for P$_{1}$ and P$_{2}$ respectively, with constraints that place x within the specific polyhedron:\\
-\textbf{maximize:} c$_{1}$x\\
-\textbf{subject to:} 
-A$_{1}$x $\leqslant$ b$_{1}$\\
-
-\textbf{maximize:} c$_{2}$x\\
-\textbf{subject to:} 
-A$_{2}$x $\leqslant$ b$_{2}$\\
-
-Separately, their dual LP's are:\\
-\textbf{minimize:} sb$_{1}$\\
-\textbf{subject to:} 
-sA$_{1}$ = c$_{1}$,
-s $\geqslant$ 0.\\
-
-\textbf{minimize:} tb$_{2}$\\
-\textbf{subject to:} 
-tA$_{2}$ = c$_{2}$,
-t $\geqslant$ 0.\\
-
-Suppose that P$_{1}$ and P$_{2}$ were to intersect and c$_{1}$ +  c$_{2}$ = c, a primal LP that would represent this would be a combination of the two previous primal LP's:\\
-\textbf{maximize:} cx\\
-\textbf{subject to:} 
-A$_{1}$x $\leqslant$ b$_{1}$, A$_{2}$x $\leqslant$ b$_{2}$.\\
-
-Clearly the dual LP is a  combination of the two previous dual LP's:\\
-\textbf{minimize:} sb$_{1}$ + tb$_{2}$\\
-\textbf{subject to:} 
-sA$_{1}$ + tA$_{2}$ = c,
-s, t $\geqslant$ 0.\\
-
-However, we know that P$_{1}$ and P$_{2}$ do not intersect, so in the primal LP no
-x will be found with the provided constraint. The primal LP is infeasible. In the dual LP suppose we let c be the zero vector, then clearly there exists an s and t such that sA$_{1}$ + tA$_{2}$ = $\vec{0}$. By the theorem of duality, where the primal LP has an optimal solution if and only if the dual has an optimal solution, it follows that our dual LP cannot have an optimal solution. If the dual had a feasible solution it would contradict the infeasibility of the primal LP.\\
-
-If both LP's had optimal solutions then by weak duality we would have,  
-(sA$_{1}$ + tA$_{2}$)x = cx $\leqslant$ sb$_{1}$ + tb$_{2}$, implying that, when sA$_{1}$ + tA$_{2}$ = $\vec{0}$ then sb$_{1}$ + tb$_{2}$ $\geqslant$ 0. Indeed, in the feasible case, the result of the dual LP would be an upperbound to the result of the primal LP. It should be noted that the inequality sb$_{1}$ + tb$_{2}$ $\geqslant$ 0 suggests that the dual has a minimum value, which if it did, then the result of the dual LP would be feasible, but this cannot be. In the situation where P$_{1}$ and P$_{2}$ do not intersect, the objective function of the dual, sb$_{1}$ + tb$_{2}$, is unbounded. It follows that there exists some s, t $\geqslant$ 0  where sA$_{1}$ + tA$_{2}$ = $\vec{0}$ but sb$_{1}$ + tb$_{2}$ \textless ~0. $\blacksquare$
-% ----------------------------------------------------------------                                                                               
-% Answer ends                                                                                                                                    
-% ---------------------------------------------------------------- 
-
-
-\newpage
-\item[Q6.]
-% ----------------------------------------------------------------                                                                               
-% TODO: Write your answer to the question below.                                                                                                 
-% ----------------------------------------------------------------                                                                               
-\textbf{Claim:} Indeed the objective function, $\sum$c(u, v)f(u,v), when minimized will produce 
-the mean of the minimum mean cycle C(V', E') in G(V, E, c), which will equal
-$\frac{\sum_{e \in E'} c(e)}{\mid E' \mid}$.\\
-
-Once the LP is complete the minimum mean cycle can be identified by the series of edges (u, v) where \mbox{f(u, v) \textgreater ~0}. \\
-\underline{By the first constraint}, any vertex i in G, which has only outward pointing edges (i, j), then f(i, j) must equal 0. This is also the same for a vertex i' that has only inward pointing edges, so for any edge (j, i'), then f(j, i') must equal 0. Indeed, if there were no cycles in G then for all edges (u, v), f(u, v) = 0. However, if a cycle exists in G any edge  (u', v') in the cycle is such that f(u', v') $\geqslant$ 0, and for any two edges in the same cycle, say, (u'$_{1}$, v'$_{1}$) and (u'$_{2}$, v'$_{2}$), then f(u'$_{1}$, v'$_{1}$) = f(u'$_{2}$, v'$_{2}$), and this maintains the first constraint.\\
-\underline{The second constraint}, gives away the real meaning of what the f values represent. It was established that only with edges from a cycle will the f value be greater than or equal to zero. Also, all edges in the same cycle have the same f values. Thus, $\sum$ f(u, v) = 1, such that when the LP is complete and that f(u, v) $\textgreater$ 0 represent an edge in cycle C(V', E'), then f(u, v) = $\frac{1}{\mid E' \mid}$.
-Indeed, since f(u, v) = $\frac{1}{\mid E' \mid}$ and all other (u, v) not in C(V', E'), \mbox{f(u, v) = 0}, then the objective function indeed returns the mean of the minimum mean cycle, $\frac{\sum_{e \in E'} c(e)}{\mid E' \mid}$. $\blacksquare$\\
-
-Converting the primal LP into standard form:\\
-\textbf{minimize:} c $\cdot$ x\\
-\textbf{subject to:} Ax = b, x $\geqslant$ 0.\\
-Where $\mid$V$\mid$ = n, and $\mid$E$\mid$ = m. Then c and x are m length vectors where c = [c(e$_{1}$), ..., c(e$_{m}$)] and \mbox{x = [f(e$_{1}$), ..., f(e$_{m}$)]}. A is an (n + 1) x m matrix, such that:\\
-\[
-A[i, j] = 
-\begin{cases} 
-      \hfill 1 \hfill & \text{vertex i is a startpoint in e$_{j}$} \\
-      \hfill -1 \hfill & \text{vertex i is a endpoint in e$_{j}$} \\
-      \hfill 1 \hfill & \text{i = n + 1} \\
-  \end{cases}
-\]\\
-Also, b is an n + 1 length vector such that the first n entries are zero and the entry n + 1 is 1. The final clause in A and the final element in b deal with the second constraint, $\sum$ f(u, v) = 1.\\
-
-Converting to the dual LP:\\
-\textbf{maximize:} y $\cdot$ b\\
-\textbf{subject to:} yA $\leqslant$ c, y $\geqslant$ 0.\\
-We do not know what y represents other than the fact that it is an n + 1 length vector. Indeed the first n elements in y must represent some function on each of the n vertices in G(V, E), we will then take y$_{i}$ to represent some value associated with vector i. Additionally, let q be the last element of y. There are m constraints given that A is an (n + 1) x m matrix. Such that each constraint is based on each edge in E. It would follow that for each (u, v) the constraint would be y$_{u}$ - y$_{v}$ + q $\leqslant$ c(u, v). As defined in A, \mbox{y$_{u}$ - y$_{v}$}, because u is a startpoint and v an endpoint, and the addition of q due to the row of 1's in the $(n+1)^{th}$ row. Additionally, the objective function y $\cdot$ b = q. Rewriting the dual:\\
-\textbf{maximize:} q\\
-\textbf{subject to:} y$_{u}$ - y$_{v}$ + q $\leqslant$ c(u, v), $\forall$ (u, v).\\
-
-\textbf{Claim:} Indeed the objective function, q, when maximized will produce 
-the mean of the minimum mean cycle C(V', E') in G(V, E, c), which will equal
-$\frac{\sum_{e \in E'} c(e)}{\mid E' \mid}$.\\
-
-By the duality theorem, when the dual LP is complete, q should represent the mean of the minimum mean cycle. Suppose we rearrange the constraints such that c(u, v) + y$_{v}$ - y$_{u}$ $\geqslant$ q, $\forall$ (u, v). Also, suppose we know  some cycle C*(V*, E*) in G(V, E, c). Now if we take only the constraints for the edges of that cycle and sum them together we have:\\
-$\sum_{(u, v) \in E^{*}}$ (c(u, v) + y$_{v}$ - y$_{u}$) $\geqslant$ $\sum_{(u, v) \in E^{*}}$ q $\rightarrow$\\
-$\sum_{(u, v) \in E^{*}}$ c(u, v) + $\sum_{(u, v) \in E^{*}}$ (y$_{v}$ - y$_{u}$) $\geqslant$ $\mid$E*$\mid$ * q $\rightarrow$\\
-($\sum_{(u, v) \in E^{*}}$ c(u, v) + $\sum_{(u, v) \in E^{*}}$ (y$_{v}$ - y$_{u}$))/$\mid$E*$\mid$ $\geqslant$ q $\rightarrow$\\
-As stated previously, the optimal value of q is the mean of the minimum mean cycle, a tight bound only occurs when q = $\frac{\sum_{e \in E'} c(e)}{\mid E' \mid}$, for the minimum mean cycle C(V', E'). In order to establish a tight bound on q, it follows for the edges of any arbitrary cycle that $\sum_{(u, v) \in E^{*}}$ (y$_{v}$ - y$_{u}$) = 0, then we have q $\leqslant$ $\frac{\sum_{e \in E^{*}} c(e)}{\mid E^{*} \mid}$. Indeed if C*(V*, E*) is the minimum mean cycle then \mbox{q = $\frac{\sum_{e \in E^{*}} c(e)}{\mid E^{*} \mid}$}. $\blacksquare$
-
-
-
-% ----------------------------------------------------------------                                                                               
-% Answer ends                                                                                                                                    
-% ----------------------------------------------------------------
-
-
-\newpage
-\item[Q7.]
-% ----------------------------------------------------------------                                                                               
-% TODO: Write your answer to the question below.                                                                                                 
-% ----------------------------------------------------------------                                                                               
-
-Let conventional milk be  x$_{1}$, Let organic milk be  x$_{2}$\\
-Profit from selling  x$_{1}$ = selling price - buying price = \$2 - \$1 = \$1\\
-Profit from selling  x$_{2}$ = seliing price - buying price = \$3 - \$1.50 = \$1.50\\
-
-\textbf{Objective function:}\\
-Maximize Profit =  x$_{1}$ + 1.5 x$_{2}$\\
-
-\textbf{Constraints:}\\
-x$_{1}$ +  x$_{2}$  $\leqslant$ 3000\\
-2x$_{2}$  $\leqslant$ x$_{1}$    $\rightarrow$     2x$_{2}$ - x$_{1}$  $\leqslant$ 0\\
-x$_{1}, $x$_{2}$ $\geqslant$ 0\\
-
-First constraint shows how the combination of conventional milk and organic milk Alice sells in a week must be at least 3000 litre.\\
-Second constraint shows that for every 1 litre of organic milk alice buys, she needs to buy at least 2 litre of conventional milk. \\
-Third line of constraint shows that there cannot be negative amount of conventional or organic milk.\\
-
-\textbf{Standard LP Form:}\\
-Maximize
-
-\[ \text{ $\vec{c}$ }= \left| \begin{array}{c}
-1 \\
-1.5 \end{array} \right| 
-\text{~~~\textbullet ~~~} \text{$\vec{x}$ } = \left| \begin{array}{c}
-\text{ x$_{1}$ } \\
-\text{ x$_{2}$ } \end{array} \right| \] 
-
-Subject to: \\
-
-\[\text{$\vec{A}$$\vec{x}$ } = \left| \begin{array}{cc}
-1 & 1  \\
--1 & 2 \end{array} \right|
-\text{~~~ $\times$ ~~~}
-\left| \begin{array}{cc}
-\text{ x$_{1}$ }  \\
-\text{ x$_{2}$ } \end{array} \right|
-\text{ $\leqslant$ }
-\left| \begin{array}{c}
-3000  \\
-0 \end{array} \right|
-\text{ = $\vec{b}$ }
- \] \\
-\hspace*{4.4cm} $\vec{x}$ $\geqslant$ 0\\
-
-
-% ----------------------------------------------------------------                                                                               
-% Answer ends                                                                                                                                    
-% ----------------------------------------------------------------
-
-
-\newpage
-\item[Q8.]
-% ----------------------------------------------------------------                                                                               
-% TODO: Write your answer to the question below.                                                                                                 
-% ----------------------------------------------------------------                                                                               
-To prove our question "q8" to be NP-Complete we need to prove that it is:\\
-1) NP\\
-2) NP Hard\\
-
-\textbf{NP:}\\ 
-Given the result set X: \\
-Check size of set X  $\leqslant$ k \textemdash ~O(1)\\
-Check that X has at least 1 element that coincides with every S$_{i}$ \textemdash ~O(n * m)\\
-These together take polynomial time\\
-Therefore q8 $\in$ NP is satisfied\\
-
-\textbf{NP-Hard:}\\
-We show that q8 is NP Hard by reduction from the known NP-Complete SAT to our question q8\\ 
-SAT $\leqslant$$_{p}$ q8 \\
-
-Given SAT in CNF:\\
-$\phi$ = ($z_{1}$ $\lor$ $\overline{z_{2}}$ $\lor$ ...) $\land$ ($z_{2}$ $\lor$ ...) $\land$ ... ( ...$\lor$...$\lor$...)\\
-$\phi$ = $c_{1}$ $\land$ $c_{2}$ $\land$ ... $\land$ $c_{p}$\\
-
-\textbf{Properties of the reduction:}\\
-\emph{1.} Let the set of variables Z = \{$z_{1}$, ..., $z_{q}$, $\overline{z_{1}}$, ..., $\overline{z_{q}}$\} such that $\mid$Z$\mid$ = 2q, be converted to the set of marbles \mbox{M = \{x$_{1}$, ..., x$_{q}$, x$_{q + 1}$, ..., x$_{n}$ \}}, such that $\mid$M$\mid$ = n = 2q.\\
-\emph{2.} For each clause c$_{i}$ above, they represent the set S$_{i}$  $\subseteq$ M\\
-\emph{3.} When $z_{j}$ (or $\overline{z_{j}}$)  is in clause $c_{i}$, it means that marble $x_{j}$ (or $x_{j + q}$)  is in the set $S_{i}$, and if $z_{j}$ (or $\overline{z_{j}}$) is not present in $c_{i}$, then $x_{j}$ (or $x_{j + q}$) is not in the set $S_{i}$.\\
-\emph{4.} Set X, defined in the question, is constructed as follows. Each $z_{j}$ (or $\overline{z_{j}}$) in a clause can have the value \mbox{0 or 1}. If $z_{j}$ (or $\overline{z_{j}}$) has the value 1, that means that marble  $x_{j}$ (or $x_{j + q}$) can be placed in the set X, 0 otherwise.\\
-\emph{5.} Finally, let k = $\mid$X$\mid$.\\
-
-\textbf{Claim: Reduction is polynomial}\\
-\emph{1.} O(q), this involves converting each variable to a marble once.\\
-\emph{2.} O(m), suppose there are m clauses, then each clause is converted to a marble set once.\\
-\emph{3.} O(mq), in the worst case each set contains all the variables possible.\\ 
-\emph{4.} O(mq), this involves going through each clause, finding a variable that is assigned a true value, and then finding its corresponding marble and inserting it into X if it is not there already.\\
-\emph{5.} O(q), in the worst case all marbles are in X.\\
-Thus the reduction will be a polynomial algorithm.\\
-
-Let's call the result of the reduction on $\phi$, Y.\\
-
-\textbf{An example of Y:}\\
-Given:\\
-$\phi$ = ($x_{1}$ $\lor$ $x_{2}$) $\land$ ($x_{2}$ $\lor$ $x_{3}$) $\land$ ($x_{4}$)\\
-$x_{1}$ = 0, $x_{2}$ = 1, $x_{3}$ = 0, and $x_{4}$ = 1\\
-Then:\\
-M = [1,2,3,4], $S_{1}$= [1,2], $S_{2}$=[2,3], $S_{3}$=[4]\\
-Now X=[2,4] by the defination that X $\cap$ S$_{i}$ $\not=$ ${\o}$\\
-Also, let k = $\mid$X$\mid$ = 2.\\
-
-In this example $\phi$ satisfies SAT and Y satisfies q8.\\
-
-\textbf{Claim: $\phi$ is satisfiable iff Y is satisfied by our question q8}\\
-
-\textbf{First we show if $\phi$ is satisfiable $\rightarrow$ Y is satisfiable:}\\
-If $\phi$ is satisfiable, it means that our CNF will output the value of 1\\
-This means that all of our clauses in Y will have to output 1 due to $\cap$ property, and each clause will have at least 1 element x$_{i}$ that has the value 1, due to the $\cup$ property.\\
-Since each clause C$_{i}$ represents the set S$_{i}$ from our question, and since each z$_{j}$ (or $\overline{z_{j}}$) in C$_{i}$ with value 1 is a marble x$_{j}$ (or $x_{j + q}$) in X, then that means each S$_{i}$ will have a least one marble that exists in the set X.\\
-Therefore X $\cap$ S$_{i}$ $\not=$ ${\o}$. Also, because the reduction sets k = $\mid$X$\mid$ it follows that q8 will be satisfied.\\
-
-\textbf{Now we show if Y is satisfiable $\rightarrow$ $\phi$ is satisfiable:}\\
-If Y is satisfiable, it means that X has all the correct elements x$_{i}$ such that X $\cap$ S$_{i}$ $\not=$ ${\o}$ for all S$_{i}$, and k $\geqslant$ $\mid$X$\mid$.\\
-Since X has all the elements to represent each clauses, it means that in each clause of C$_{i}$ there will be at least one element with value 1. (By the properties of Y)\\
-Because the clause has at least one element with the value 1, a clause taken separately would output the value 1 because all operators are or operators. Since all clauses output the value 1, with the and operators connecting all clause then the CNF will output 1, thus the SAT is satisfied. \\
-
-Since the claim is proven, we have shown that SAT $\leqslant$$_{p}$ q8  and that q8 is NP-Hard.\\ 
-Since it is NP and NP-Hard, we have shown that q8 is NP-Complete. $\blacksquare$\\
-% ----------------------------------------------------------------                                                                               
-% Answer ends                                                                                                                                    
-% ----------------------------------------------------------------
 \end{description}
 \end{document}
