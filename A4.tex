@@ -101,6 +101,31 @@ By the proofs \underline{1.} and \underline{2.} it follows that the mute prison 
 % TODO: Write your answer to the question below. 
 % ----------------------------------------------------------------
 
+~\\
+\textbf{Claim:} The nonsense prerequisites problem is NP-complete.\\
+\textbf{Proof:}\\
+\underline{1.} Show the nonsense prerequisites problem is NP.\\
+\underline{2.} Show the nonsense prerequisites problem is NP-hard.\\
+
+\underline{1.} Suppose we know G(V, E) and k and we are given E' as a certificate. We verify the certificate with the following algorithm:\\
+\begin{algorithm}[H]
+ \LinesNumbered 
+E'' = E - E'\;
+Produce function w, such that $\forall$ (u, v) $\in$ E'', w(u, v) = -1\;
+Produce new G'(V, E'', w)\;
+\For{v in V}{
+Perform Bellman-Ford(G', w, v)\;
+\For{each edge (u, v) $\in$ G'.E''}{
+\If{v.d \textgreater ~u.d + w(u, v)}{
+There is a cycle and the certificate is not satisfiable.
+}
+}
+}
+\end{algorithm}
+If there is a cycle in G'(V, E'') then setting each edge in G' to a weight -1 will produce a negative edge cycle which, after relaxations, we can identify easily. Given that G(V, E'') may or may not be connected, to locate a cycle in the graph we must perform the relaxation with Bellman-Ford $\mid$V$\mid$ times . Bellman-Ford runs at O(VE), it is run $\mid$V$\mid$ times, thus we have O(V$^2$E) for our algorithm. Since $\mid$V$\mid$ = n, and $\mid$E$\mid$ = O(n$^2$), the verifier runs O(n$^4$). So the verifier is polynomial and then the nonsense prerequisites problem is NP. $\blacksquare$\\ 
+
+\underline{2.}   
+
 % ----------------------------------------------------------------
 % Answer ends
 % ----------------------------------------------------------------
