@@ -122,7 +122,7 @@ There is a cycle and the certificate is not satisfiable.
 }
 }
 \end{algorithm}
-If there is a cycle in G'(V, E'') then setting each edge in G' to a weight -1 will produce a negative edge cycle which, after relaxations, we can identify easily. Given that G(V, E'') may or may not be connected, to locate a cycle in the graph we must perform the relaxation with Bellman-Ford $\mid$V$\mid$ times . Bellman-Ford runs at O(VE), it is run $\mid$V$\mid$ times, thus we have O(V$^2$E) for our algorithm. Since $\mid$V$\mid$ = n, and $\mid$E$\mid$ = O(n$^2$), the verifier runs O(n$^4$). So the verifier is polynomial and then the nonsense prerequisites problem is NP. $\blacksquare$\\ 
+If there is a cycle in G'(V, E'') then setting each edge in G' to a weight -1 will produce a negative edge cycle which, after relaxations, we can identify easily. Given that G(V, E'') may or may not be connected, to locate a cycle in the graph we must perform the relaxation with Bellman-Ford $\mid$V$\mid$ times. Bellman-Ford runs at O(VE), it is executed $\mid$V$\mid$ times in the verifier, thus we have O(V$^2$E) for our algorithm. Since $\mid$V$\mid$ = n, and $\mid$E$\mid$ = O(n$^2$), the verifier runs O(n$^4$). So the verifier is polynomial and then the nonsense prerequisites problem is NP. $\blacksquare$\\ 
 
 \underline{2.}   
 

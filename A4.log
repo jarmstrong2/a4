@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/MacPorts 2013_5) (format=pdflatex 2013.12.14)  28 JUL 2014 18:56
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/MacPorts 2013_5) (format=pdflatex 2013.12.14)  28 JUL 2014 20:58
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -807,7 +807,7 @@ are/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr7.pfb></opt/local/share/tex
 mf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></opt/local/share/texmf-te
 xlive/fonts/type1/public/amsfonts/cm/cmti10.pfb></opt/local/share/texmf-texlive
 /fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on A4.pdf (6 pages, 129906 bytes).
+Output written on A4.pdf (6 pages, 129909 bytes).
 PDF statistics:
  70 PDF objects out of 1000 (max. 8388607)
  50 compressed objects within 1 object stream
