@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/MacPorts 2013_5) (format=pdflatex 2013.12.14)  28 JUL 2014 20:58
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/MacPorts 2013_5) (format=pdflatex 2013.12.14)  30 JUL 2014 13:54
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -787,15 +787,37 @@ Underfull \hbox (badness 10000) in paragraph at lines 125--126
 
  []
 
-[4] [5] [6] (./A4.aux) ) 
+
+Underfull \hbox (badness 10000) in paragraph at lines 127--128
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 129--131
+
+ []
+
+LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <10> not available
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 135.
+
+Underfull \hbox (badness 10000) in paragraph at lines 132--136
+
+ []
+
+[4]
+Underfull \hbox (badness 10000) in paragraph at lines 137--138
+
+ []
+
+[5] [6] [7] (./A4.aux) ) 
 Here is how much of TeX's memory you used:
- 13752 strings out of 494227
- 241872 string characters out of 6157703
+ 13756 strings out of 494227
+ 241933 string characters out of 6157703
  330164 words of memory out of 5000000
- 16767 multiletter control sequences out of 15000+600000
+ 16771 multiletter control sequences out of 15000+600000
  6248 words of font info for 25 fonts, out of 8000000 for 9000
  430 hyphenation exceptions out of 8191
- 63i,21n,57p,885b,477s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 63i,21n,57p,1612b,477s stack positions out of 5000i,500n,10000p,200000b,80000s
 </opt/local/share/texmf-texlive/fonts/type1/public/amsf
 onts/cm/cmbsy10.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts
 /cm/cmbx10.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/c
@@ -805,12 +827,13 @@ mex10.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi10
 ocal/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr5.pfb></opt/local/sh
 are/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr7.pfb></opt/local/share/tex
 mf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></opt/local/share/texmf-te
-xlive/fonts/type1/public/amsfonts/cm/cmti10.pfb></opt/local/share/texmf-texlive
-/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on A4.pdf (6 pages, 129909 bytes).
+xlive/fonts/type1/public/amsfonts/cm/cmsy7.pfb></opt/local/share/texmf-texlive/
+fonts/type1/public/amsfonts/cm/cmti10.pfb></opt/local/share/texmf-texlive/fonts
+/type1/public/amsfonts/symbols/msam10.pfb>
+Output written on A4.pdf (7 pages, 146313 bytes).
 PDF statistics:
- 70 PDF objects out of 1000 (max. 8388607)
- 50 compressed objects within 1 object stream
+ 79 PDF objects out of 1000 (max. 8388607)
+ 57 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
