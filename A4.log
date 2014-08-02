@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/MacPorts 2013_5) (format=pdflatex 2013.12.14)  2 AUG 2014 16:56
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/MacPorts 2013_5) (format=pdflatex 2013.12.14)  2 AUG 2014 17:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -843,13 +843,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 175--196
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [6]
-Overfull \hbox (22.74185pt too wide) in paragraph at lines 202--217
+Overfull \hbox (30.48947pt too wide) in paragraph at lines 202--220
 []\OT1/cmr/m/n/10 *. It fol-lows, from our round-ing scheme, that the round-ing
- so-lu-tion would be [].
+ so-lu-tion must be []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 202--217
+Underfull \hbox (badness 10000) in paragraph at lines 202--220
 
  []
 
@@ -874,7 +874,7 @@ exlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></opt/local/share/texmf-texliv
 e/fonts/type1/public/amsfonts/cm/cmsy7.pfb></opt/local/share/texmf-texlive/font
 s/type1/public/amsfonts/cm/cmti10.pfb></opt/local/share/texmf-texlive/fonts/typ
 e1/public/amsfonts/symbols/msam10.pfb>
-Output written on A4.pdf (8 pages, 152897 bytes).
+Output written on A4.pdf (8 pages, 153010 bytes).
 PDF statistics:
  82 PDF objects out of 1000 (max. 8388607)
  59 compressed objects within 1 object stream

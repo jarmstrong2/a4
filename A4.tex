@@ -203,17 +203,20 @@ y_{q}^1 ~or~ y_{q}^0 =
 \underline{Proof that Rounding Scheme works:}\\
 All constraints in the interger program will be satisfied. For example a) is satisfied because y$_{q}^1$ or y$_{q}^0$ $\in$ \{0, 1\}. Constraint b) is satisfied even in the unfortunate case where x$_{q}^1$* and x$_{q}^0$* equals 1/2 or greater, then y$_{q}^1$ and y$_{q}^0$ will equal 1. Additionally both y$_{q}^1$ and y$_{q}^0$ cannot both equal 0 by the constraint b). Finally, in constraint c), P is a bound specified by the algorithm, and indeed with the specified values for y$_{q}^1$ and y$_{q}^0$ the constraint will be satisfied. Therefore we conclude that the result of our rounding scheme will be feasible in the integer program.\\
 \underline{Proof of 2-approximation:}\\
-In both the relaxed linear program and rounding scheme function f will return the same results, such that the result of the relaxed linear program, since P is minimized, P will equal some P$_{m}$. Indeed suppose \mbox{P$_{m}$ = $\sum_{\forall q}$ x$_{q}^{f(q,~ m)}$}*. It follows, from our rounding scheme, that the rounding solution would be \mbox{P'$_{m}$ = $\sum_{\forall q}$ y$_{q}^{f(q,~ m)}$}. Then the proof is such that:\\
+In both the relaxed linear program and rounding scheme function f will return the same results, such that the result of the relaxed linear program, since P is minimized, P will equal some P$_{m}$. Indeed suppose \mbox{P = P$_{m}$ = $\sum_{\forall q}$ x$_{q}^{f(q,~ m)}$}*. It follows, from our rounding scheme, that the rounding solution must be \mbox{P'$_{r}$ = $\sum_{\forall q}$ y$_{q}^{f(q,~ r)}$} such that r may or may not equal m. Then the proof is such that:\\
 x$_{q}^1$* $\geqslant$ $\frac{1}{2}$ $\rightarrow$ y$_{q}^1$ = 1\\
 x$_{q}^0$* $\geqslant$ $\frac{1}{2}$ $\rightarrow$ y$_{q}^0$ = 1\\
 then,\\
 2x$_{q}^1$* $\geqslant$ 1 $\rightarrow$ 2x$_{q}^1$* $\geqslant$ y$_{q}^1$\\
 2x$_{q}^0$* $\geqslant$ 1 $\rightarrow$ 2x$_{q}^0$* $\geqslant$ y$_{q}^0$\\
 finally,\\
-P'$_{m}$ = $\sum_{\forall q}$ y$_{q}^{f(q,~ m)}$ $\leqslant$
-2*P$_{m}$ = 2*$\sum_{\forall q}$ x$_{q}^{f(q,~ m)}$ ~~~~~~~~\# Since we established that P = P$_{m}$\\
-P'$_{m}$ = $\sum_{\forall q}$ y$_{q}^{f(q,~ m)}$ $\leqslant$ 2*P $\leqslant$  2*LPOPT $\leqslant$ 2*IPOPT\\
-Therefore we have that the rounding scheme attains a 2-approximation. $\blacksquare$\\
+P'$_{r}$ = $\sum_{\forall q}$ y$_{q}^{f(q,~ m)}$ $\leqslant$
+2*P$_{r}$ = 2*$\sum_{\forall q}$ x$_{q}^{f(q,~ r)}$\\ 
+P'$_{r}$ = $\sum_{\forall q}$ y$_{q}^{f(q,~ m)}$
+$\leqslant$
+2*P$_{m}$ = 2*$\sum_{\forall q}$ x$_{q}^{f(q,~ m)}$~~~~~~~~\# Since P$_{r}$ $\leqslant$ P$_{m}$\\
+P'$_{r}$ = $\sum_{\forall q}$ y$_{q}^{f(q,~ m)}$ $\leqslant$ 2*P $\leqslant$  2*LPOPT $\leqslant$ 2*IPOPT ~~~~~~~~\# Since we established that P = P$_{m}$\\
+Therefore, the rounding scheme attains a 2-approximation. $\blacksquare$\\
  
 % ----------------------------------------------------------------
 % Answer ends
