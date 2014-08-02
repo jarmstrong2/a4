@@ -138,7 +138,6 @@ By proving both directions, it follows that G(V, E), k of VECTOR COVER is satisf
 
 Additionally, since the reduction can be performed in polynomial time, then the nonsense prerequisite problem is NP-hard. $\blacksquare$
 
-
 % ----------------------------------------------------------------
 % Answer ends
 % ----------------------------------------------------------------
@@ -148,7 +147,63 @@ Additionally, since the reduction can be performed in polynomial time, then the 
 % ----------------------------------------------------------------
 % TODO: Write your answer to the question below. 
 % ----------------------------------------------------------------
+~\\
+\underline{1.} \{0, 1\}-integer programming formulation:\\
+\underline{Minimize:}\\
+\hspace*{1cm}\parbox{15cm}{
+P
+}\\
+\underline{Subject To:}\\
+a) \\
+\hspace*{1cm}\parbox{15cm}{
+x$_{q}^1$ $\in$ \{0, 1\} ~~~~~ $\forall$ q s.t. q represents a path i $\rightarrow$ j, such that L[i, j] = 1\\
+x$_{q}^0$ $\in$ \{0, 1\} 
+}\\
+b)\\
+\hspace*{1cm}\parbox{15cm}{
+x$_{q}^1$ + x$_{q}^0$ $\geqslant$ 1\\
+}\\
+c)\\
+\hspace*{1cm}\parbox{15cm}{
+$\sum_{\forall q}$ x$_{q}^{f(q,~ m)}$ $\leqslant$ P ~~~~~ $\forall$ m $\in$ \{0, 1, ..., n-1\}\\
+}\\
+\underline{Explanation of Constraints:}\\
+a) x$_{q}^1$ and x$_{q}^0$ represent the direction (x$_{q}^1$ clockwise and x$_{q}^0$ counter-clockwise) a gift q will be passed from i to j, such that i, j $\in$ \{0, 1, ..., n-1\}. If x$_{q}^1$ = 1 then the gift will be sent clockwise, if x$_{q}^1$ = 0 it will not be sent clockwise (same for x$_{q}^0$ but counter-clockwise).\\
+b) This constraint limits x$_{q}^1$ and x$_{q}^0$ so both cannot be 0, and it tightly bound when only one of the variables equals 1.\\
+c) Assume some linear function f, and also assume m represents a pass (m, m+1[n]). f(q, m) = 1 if on the clockwise direction of passing a gift from i to j a pass in (m, m+1[n]) occurs. Conversely, f(q, m) = 0 if on the counter-clockwise direction of passing a gift from i to j a pass in (m, m+1[n]) occurs. We can assume linearity of f as the computation of the intersection of gift direction and passes will have been computed previously and values will be contained in some 2-D matrix which f access at will. Finally, each summation for each m will represent, when the IP completes, each P$_{m}$. Clearly if the pass (m, m+1[n]) is used then then x$_{q}^{f(q,~ m)}$ = 1, which will be added to P$_{m}$. Additionally, the constraint is limited to P, as a tight bound, P is some value that will equal the maximum of all P$_{m}$'s.\\ 
 
+\underline{2.} LP relaxation:\\
+\underline{Minimize:}\\
+\hspace*{1cm}\parbox{15cm}{
+P
+}\\
+\underline{Subject To:}\\
+a) \\
+\hspace*{1cm}\parbox{15cm}{
+0 $\leqslant$ x$_{q}^1$ $\leqslant$ 1 ~~~~~ $\forall$ q s.t. q represents a path i $\rightarrow$ j, such that L[i, j] = 1\\
+0 $\leqslant$ x$_{q}^0$ $\leqslant$ 1 
+}\\
+b)\\
+\hspace*{1cm}\parbox{15cm}{
+x$_{q}^1$ + x$_{q}^0$ $\geqslant$ 1\\
+}\\
+c)\\
+\hspace*{1cm}\parbox{15cm}{
+$\sum_{\forall q}$ x$_{q}^{f(q,~ m)}$ $\leqslant$ P ~~~~~ $\forall$ m $\in$ \{0, 1, ..., n-1\}\\
+}\\
+\underline{Rounding Scheme:}\\
+Let all x$_{0}^1$*, x$_{0}^0$*, x$_{1}^1$*, x$_{1}^0$*, ..., x$_{s}^1$*, x$_{s}^0$* be the solution returned by the relaxed LP. Allow us to round all x$_{q}^1$*'s and x$_{q}^0$*'s to produce y$_{0}^1$, y$_{0}^0$, y$_{1}^1$, y$_{1}^0$, ..., y$_{s}^1$, y$_{s}^0$, and let this represent the solution to the integer programming such that:\\
+\[
+y_{q}^1 ~or~ y_{q}^0 = 
+\begin{cases} 
+      \hfill 1 \hfill & \text{if x$_{q}^1$* or x$_{q}^0$* $\geqslant$ $\frac{1}{2}$} \\
+      \hfill 0 \hfill & \text{otherwise} \\
+  \end{cases}
+\]\\
+\underline{Proof that Rounding Scheme works:}\\
+All constraints in the interger program will be satisfied. For example a) is satisfied because y$_{q}^1$ or y$_{q}^0$ $\in$ \{0, 1\}. Constraint b) is satisfied even in the unfortunate case where x$_{q}^1$* and x$_{q}^0$* equals 1/2 or greater, then y$_{q}^1$ and y$_{q}^0$ will equal 1. Additionally both y$_{q}^1$ and y$_{q}^0$ cannot both equal 0 by the constraint b). Finally, in constraint c), P is a bound specified by the algorithm, and indeed with the specified values for y$_{q}^1$ and y$_{q}^0$ the constraint will be satisfied. Therefore we conclude that the result of our rounding scheme will be feasible in the integer program.\\
+\underline{Proof of 2-approximation:}\\
+ 
 % ----------------------------------------------------------------
 % Answer ends
 % ----------------------------------------------------------------
