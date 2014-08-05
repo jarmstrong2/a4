@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/MacPorts 2013_5) (format=pdflatex 2013.12.14)  2 AUG 2014 17:28
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/MacPorts 2013_5) (format=pdflatex 2013.12.14)  5 AUG 2014 14:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -853,7 +853,42 @@ Underfull \hbox (badness 10000) in paragraph at lines 202--220
 
  []
 
-[7] [8] (./A4.aux) ) 
+[7]
+Underfull \hbox (badness 10000) in paragraph at lines 241--241
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 245--245
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 258--258
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 262--262
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 230--265
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 271--272
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 278--300
+
+ []
+
+[8] [9] (./A4.aux) ) 
 Here is how much of TeX's memory you used:
  13756 strings out of 494227
  241933 string characters out of 6157703
@@ -874,10 +909,10 @@ exlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></opt/local/share/texmf-texliv
 e/fonts/type1/public/amsfonts/cm/cmsy7.pfb></opt/local/share/texmf-texlive/font
 s/type1/public/amsfonts/cm/cmti10.pfb></opt/local/share/texmf-texlive/fonts/typ
 e1/public/amsfonts/symbols/msam10.pfb>
-Output written on A4.pdf (8 pages, 153010 bytes).
+Output written on A4.pdf (9 pages, 157611 bytes).
 PDF statistics:
- 82 PDF objects out of 1000 (max. 8388607)
- 59 compressed objects within 1 object stream
+ 85 PDF objects out of 1000 (max. 8388607)
+ 61 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -156,7 +156,7 @@ P
 \underline{Subject To:}\\
 a) \\
 \hspace*{1cm}\parbox{15cm}{
-x$_{q}^1$ $\in$ \{0, 1\} ~~~~~ $\forall$ q s.t. q represents a path i $\rightarrow$ j, such that L[i, j] = 1\\
+x$_{q}^1$ $\in$ \{0, 1\} ~~~~~ $\forall$ q s.t. q represents a path of transferring a present, i $\rightarrow$ j, such that L[i, j] = 1\\
 x$_{q}^0$ $\in$ \{0, 1\} 
 }\\
 b)\\
@@ -180,7 +180,7 @@ P
 \underline{Subject To:}\\
 a) \\
 \hspace*{1cm}\parbox{15cm}{
-0 $\leqslant$ x$_{q}^1$ $\leqslant$ 1 ~~~~~ $\forall$ q s.t. q represents a path i $\rightarrow$ j, such that L[i, j] = 1\\
+0 $\leqslant$ x$_{q}^1$ $\leqslant$ 1 ~~~~~ $\forall$ q s.t. q represents a path of transferring a present, i $\rightarrow$ j, such that L[i, j] = 1\\
 0 $\leqslant$ x$_{q}^0$ $\leqslant$ 1 
 }\\
 b)\\
@@ -227,7 +227,73 @@ Therefore, the rounding scheme attains a 2-approximation. $\blacksquare$\\
 % ----------------------------------------------------------------
 % TODO: Write your answer to the question below. 
 % ----------------------------------------------------------------
-
+~\\
+\underline{1.} \{0, 1\}-integer programming formulation:\\
+\underline{Minimize:}\\
+\hspace*{1cm}\parbox{15cm}{
+$\sum_{u \in V}$ C$_{v}$(u)x$_{u}$ + $\sum_{(u, v) \in E}$ C$_{e}$(u,v)x$_{(u, v)}$
+}\\
+\underline{Subject To:}\\
+a) \\
+\hspace*{1cm}\parbox{15cm}{
+x$_{u}$ $\in$ \{0, 1\} ~~~~~ $\forall$ u $\in$ V\\ 
+x$_{(u, v)}$ $\in$ \{0, 1\} ~~~~~ $\forall$ (u, v) $\in$ E\\ 
+}\\
+b)\\
+\hspace*{1cm}\parbox{15cm}{
+x$_{u}$ + x$_{v}$ + x$_{(u, v)}$ $\geqslant$ 1\\
+}\\
+\underline{Explanation of Constraints:}\\
+\textbf{HENRY TO DO}\\
+\underline{2.} LP relaxation:\\
+\underline{Minimize:}\\
+\hspace*{1cm}\parbox{15cm}{
+$\sum_{u \in V}$ C$_{v}$(u)x$_{u}$ + $\sum_{(u, v) \in E}$ C$_{e}$(u,v)x$_{(u, v)}$
+}\\
+\underline{Subject To:}\\
+a) \\
+\hspace*{1cm}\parbox{15cm}{
+0 $\leqslant$ x$_{u}$ $\leqslant$ 1 ~~~~~ $\forall$ u $\in$ V\\ 
+0 $\leqslant$ x$_{(u, v)}$ $\leqslant$ 1 ~~~~~ $\forall$ (u, v) $\in$ E\\ 
+}\\
+b)\\
+\hspace*{1cm}\parbox{15cm}{
+x$_{u}$ + x$_{v}$ + x$_{(u, v)}$ $\geqslant$ 1\\
+}\\
+\underline{Rounding Scheme:}\\
+$\forall$ u $\in$ V, and $\forall$ (u, v) $\in$ E let all x$_{u}*$ and x$_{(u, v)}*$ be the solution to the relaxed LP. Allow us to round all x$_{u}*$'s and x$_{(u, v)}*$'s to the interger programming solution, such that all y$_{u}$'s and y$_{(u, v)}$'s will be a feasible IP solution:\\
+\[
+y_{u} = 
+\begin{cases} 
+      \hfill 1 \hfill & \text{if corresponding x$_{u}$* $\geqslant$ $\frac{1}{3}$} \\
+      \hfill 0 \hfill & \text{otherwise} \\
+  \end{cases}
+\]\\
+\[
+y_{(u, v)} = 
+\begin{cases} 
+      \hfill 1 \hfill & \text{if corresponding x$_{(u, v)}$* $\geqslant$ $\frac{1}{3}$} \\
+      \hfill 0 \hfill & \text{otherwise} \\
+  \end{cases}
+\]\\
+\underline{Proof that Rounding Scheme works:}\\
+\textbf{HENRY TO DO}\\
+\underline{Proof of 3-approximation:}\\
+\textbf{HENRY TO DO (add intro text if needed)}\\
+x$_{u}$* $\geqslant$ $\frac{1}{3}$ $\rightarrow$ y$_{u}$ = 1\\
+x$_{(u, v)}$* $\geqslant$ $\frac{1}{3}$ $\rightarrow$ y$_{(u, v)}$ = 1\\
+then,\\
+3x$_{u}$* $\geqslant$ 1 $\rightarrow$ 3x$_{u}$* $\geqslant$ y$_{u}$\\
+3x$_{(u, v)}$* $\geqslant$ 1 $\rightarrow$ 3x$_{(u, v)}$* $\geqslant$ y$_{(u, v)}$\\
+finally,\\
+$\sum_{u \in V}$ C$_{v}$(u)y$_{u}$ + $\sum_{(u, v) \in E}$ C$_{e}$(u,v)y$_{(u, v)}$ $\leqslant$
+$\sum_{u \in V}$ C$_{v}$(u)(3x$_{u}$) + $\sum_{(u, v) \in E}$ C$_{e}$(u,v)(3x$_{(u, v)}$)\\
+$\sum_{u \in V}$ C$_{v}$(u)y$_{u}$ + $\sum_{(u, v) \in E}$ C$_{e}$(u,v)y$_{(u, v)}$ $\leqslant$
+3($\sum_{u \in V}$ C$_{v}$(u)x$_{u}$) + 3($\sum_{(u, v) \in E}$ C$_{e}$(u,v)x$_{(u, v)}$)\\
+$\sum_{u \in V}$ C$_{v}$(u)y$_{u}$ + $\sum_{(u, v) \in E}$ C$_{e}$(u,v)y$_{(u, v)}$ $\leqslant$
+3($\sum_{u \in V}$ C$_{v}$(u)x$_{u}$ + $\sum_{(u, v) \in E}$ C$_{e}$(u,v)x$_{(u, v)}$)\\
+$\sum_{u \in V}$ C$_{v}$(u)y$_{u}$ + $\sum_{(u, v) \in E}$ C$_{e}$(u,v)y$_{(u, v)}$ $\leqslant$ 3*LPOPT $\leqslant$ 3*IPOPT\\
+Therefore, the rounding scheme attains a 3-approximation. $\blacksquare$\\
 % ---------------------------------------------------------------
 % Answer ends
 % ----------------------------------------------------------------
