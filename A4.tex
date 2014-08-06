@@ -192,30 +192,32 @@ c)\\
 $\sum_{\forall q}$ x$_{q}^{f(q,~ m)}$ $\leqslant$ P ~~~~~ $\forall$ m $\in$ \{0, 1, ..., n-1\}\\
 }\\
 \underline{Rounding Scheme:}\\
-Let all x$_{0}^1$*, x$_{0}^0$*, x$_{1}^1$*, x$_{1}^0$*, ..., x$_{s}^1$*, x$_{s}^0$* be the solution returned by the relaxed LP. Allow us to round all x$_{q}^1$*'s and x$_{q}^0$*'s to produce y$_{0}^1$, y$_{0}^0$, y$_{1}^1$, y$_{1}^0$, ..., y$_{s}^1$, y$_{s}^0$, and let this represent the solution to the integer programming such that:\\
+Let all x$_{1}^1$*, x$_{1}^0$*, x$_{2}^1$*, x$_{2}^0$*, ..., x$_{s}^1$*, x$_{s}^0$* (s being the number of gifts to be exchanged) and P be the solution returned by the relaxed LP. Allow us to round all x$_{q}^1$*'s and x$_{q}^0$*'s to produce y$_{1}^1$, y$_{1}^0$, y$_{2}^1$, y$_{2}^0$, ..., y$_{s}^1$, y$_{s}^0$, and P'. So, let this represent the solution to the integer programming such that:\\
 \[
 y_{q}^1 ~or~ y_{q}^0 = 
 \begin{cases} 
       \hfill 1 \hfill & \text{if corresponding x$_{q}^1$* or x$_{q}^0$* $\geqslant$ $\frac{1}{2}$} \\
       \hfill 0 \hfill & \text{otherwise} \\
   \end{cases}
-\]\\
+\]
+\center{P' = max$_{0 \leqslant r \leqslant n - 1}$ (P'$_{r}$ = $\sum_{\forall q}$ y$_{q}^{f(q,~ r)}$)} \\
+\begin{flushleft}
 \underline{Proof that Rounding Scheme works:}\\
 All constraints in the interger program will be satisfied. For example a) is satisfied because y$_{q}^1$ or y$_{q}^0$ $\in$ \{0, 1\}. Constraint b) is satisfied even in the unfortunate case where x$_{q}^1$* and x$_{q}^0$* equals 1/2 or greater, then y$_{q}^1$ and y$_{q}^0$ will equal 1. Additionally both y$_{q}^1$ and y$_{q}^0$ cannot both equal 0 by the constraint b). Finally, in constraint c), P is a bound specified by the algorithm, and indeed with the specified values for y$_{q}^1$ and y$_{q}^0$ the constraint will be satisfied. Therefore we conclude that the result of our rounding scheme will be feasible in the integer program.\\
 \underline{Proof of 2-approximation:}\\
-In both the relaxed linear program and rounding scheme function f will return the same results, such that the result of the relaxed linear program, since P is minimized, P will equal some P$_{m}$. Indeed suppose \mbox{P = P$_{m}$ = $\sum_{\forall q}$ x$_{q}^{f(q,~ m)}$}*. It follows, from our rounding scheme, that the rounding solution must be \mbox{P'$_{r}$ = $\sum_{\forall q}$ y$_{q}^{f(q,~ r)}$} such that r may or may not equal m. Then the proof is such that:\\
+In both the relaxed linear program and rounding scheme function f will return the same results, such that the result of the relaxed linear program, since P is minimized, P will equal some P$_{m}$, for passes at (m, m+1[n]). Indeed suppose \mbox{P = P$_{m}$ = $\sum_{\forall q}$ x$_{q}^{f(q,~ m)}$}*. It follows, from our rounding scheme, that the rounding solution must be P' = \mbox{P'$_{r}$ = $\sum_{\forall q}$ y$_{q}^{f(q,~ r)}$} representing the number of passes at some (r, r+1[n]). Then the proof is such that:\\
 x$_{q}^1$* $\geqslant$ $\frac{1}{2}$ $\rightarrow$ y$_{q}^1$ = 1\\
 x$_{q}^0$* $\geqslant$ $\frac{1}{2}$ $\rightarrow$ y$_{q}^0$ = 1\\
 then,\\
 2x$_{q}^1$* $\geqslant$ 1 $\rightarrow$ 2x$_{q}^1$* $\geqslant$ y$_{q}^1$\\
 2x$_{q}^0$* $\geqslant$ 1 $\rightarrow$ 2x$_{q}^0$* $\geqslant$ y$_{q}^0$\\
 finally,\\
-P'$_{r}$ = $\sum_{\forall q}$ y$_{q}^{f(q,~ m)}$ $\leqslant$
+P'$_{r}$ = $\sum_{\forall q}$ y$_{q}^{f(q,~ r)}$ $\leqslant$
 2*P$_{r}$ = 2*$\sum_{\forall q}$ x$_{q}^{f(q,~ r)}$\\ 
-P'$_{r}$ = $\sum_{\forall q}$ y$_{q}^{f(q,~ m)}$
+P'$_{r}$ = $\sum_{\forall q}$ y$_{q}^{f(q,~ r)}$
 $\leqslant$
 2*P$_{m}$ = 2*$\sum_{\forall q}$ x$_{q}^{f(q,~ m)}$~~~~~~~~\# Since P$_{r}$ $\leqslant$ P$_{m}$\\
-P'$_{r}$ = $\sum_{\forall q}$ y$_{q}^{f(q,~ m)}$ $\leqslant$ 2*P $\leqslant$  2*LPOPT $\leqslant$ 2*IPOPT ~~~~~~~~\# Since we established that P = P$_{m}$\\
+P'$_{r}$ = $\sum_{\forall q}$ y$_{q}^{f(q,~ r)}$ $\leqslant$ 2*P $\leqslant$  2*LPOPT $\leqslant$ 2*IPOPT ~~~~~~~~\# Since we established that P = P$_{m}$\\
 Therefore, the rounding scheme attains a 2-approximation. $\blacksquare$\\
  
 % ----------------------------------------------------------------
@@ -297,6 +299,6 @@ Therefore, the rounding scheme attains a 3-approximation. $\blacksquare$\\
 % ---------------------------------------------------------------
 % Answer ends
 % ----------------------------------------------------------------
-
+\end{flushleft}
 \end{description}
 \end{document}
