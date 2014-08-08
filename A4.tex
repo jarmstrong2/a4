@@ -59,14 +59,16 @@ j = 1\;
 \For {(otherinmate $\neq$ inmate) in S}{
 \If{T[otherinmate, j]}{
 	S is not a subset of inmates who do don't speak the same language\;
+	return 0\;
 }
 }
 }
 j++\;
 }
 }
+return 1\;
 \end{algorithm}
-Clearly, the verification that S is a subset where no two inmates speak the same language can run in polynomial time O(mn$^{2}$). Once this verification if complete all that is left to do is to verify that $\mid$S$\mid$ $\geqslant$ k, which is O(1). Therefore the mute prison problem is NP. $\blacksquare$\\
+Clearly, the verification that S is a subset where no two inmates speak the same language can run in polynomial time O(mn$^{2}$). Once this verification is complete all that is left to do is to verify that $\mid$S$\mid$ $\geqslant$ k, which is O(1). Therefore the mute prison problem is NP. $\blacksquare$\\
 
 \underline{2.} To show that the mute prison problem is NP-hard we must perform a reduction using an NP-complete problem. We will use a reduction on NP-complete 3-SAT in CNF, in order to show 3-SAT $\leqslant_{p}$ Mute Prison Problem.\\
 
@@ -81,11 +83,11 @@ L_{i} =
 \]\\
 Producing L$_{1}$, L$_{2}$, ..., L$_{m}$ will take polynomial time since we iterate through each C$_{i}$ and perform a boolean or operation on each z$_{i}$ in C$_{i}$ which takes O(m).\\
 
-Finally, the mute prison problem requires a matrix T to produce the subset of inmates S. Let T be an m x m matrix, so that no inmates are left without a language. The rows in T will represent inmates and the columns will represent languages such that column i represents L$_{i}$. The algortihm that peforms the reduction will iterate through each L$_{i}$. If L$_{i}$ = 1 then set T[i, i] = 1, else if L$_{i}$ =  0 then \mbox{T[1, i] = T[2, i] = ... = T[m, i] = 1}. Assigning all inmates to speak L$_{i}$, when L$_{i}$ = 0, will guarantee that $\mid$S$\mid$ = 0. Alternatively, $\forall$ i, if L$_{i}$ = 1 then $\mid$S$\mid$ = m. So that if $\phi$ is satisfies 3-SAT, then T will satisfy the mute prison problem if we set k = m. Again this process is polynomial as it iterates through m L$_{i}$'s and assigns at most m inmates the language L$_{i}$, so it will run O(m$^{2}$).\\
+Finally, the mute prison problem requires a matrix T to produce the subset of inmates S. Let T be an m x m matrix, so that no inmates are left without a language. The rows in T will represent inmates and the columns will represent languages such that column i represents L$_{i}$. The algortihm that peforms the reduction will iterate through each L$_{i}$. If L$_{i}$ = 1 then set T[i, i] = 1, else if L$_{i}$ =  0 then set \mbox{T[1, i] = T[2, i] = ... = T[m, i] = 1}. Assigning all inmates to speak L$_{i}$, when L$_{i}$ = 0, will guarantee that $\mid$S$\mid$ = $\emptyset$. Alternatively, $\forall$ i, if L$_{i}$ = 1 then $\mid$S$\mid$ = m. So that if $\phi$ in 3-SAT is satisfiable, then T will satisfy the mute prison problem if we set k = m. Again this process is polynomial as it iterates through m L$_{i}$'s and assigns at most m inmates the language L$_{i}$, so it will run O(m$^{2}$).\\
 \textbf{$\phi$ of 3-SAT is satisfiable $\rightarrow$ L and k of mute prison problem is satisfiable}\\
 Suppose $\phi$ of 3-SAT is satisfiable, then each clause C$_{1}$, C$_{2}$, ..., C$_{m}$ is satisfied. A set of L$_{1}$, ..., L$_{m}$ is produced such that $\forall$ L$_{i}$, L$_{i}$ = 1. Then we form matrix T of size m x m, such that T resembles the identity matrix as each T[i,i] = 1. Also, k =m, so that when S is assembled all m inmates speak a different language, then \mbox{$\mid$S$\mid$ $\geqslant$ k} is satisfied.\\ 
 \textbf{L and k of mute prison problem is satisfiable $\rightarrow$ $\phi$ of 3-SAT is satisfiable}\\
-Suppose that T and k of the mute prison problem are satisfiable. Also, suppose $\mid$S$\mid$ is at least m=k. Choose only the first m inmates from S, and extract only their rows from T to form a new matrix T'. It will follows that in T' there will be only m columns where there is at most one entry with the value 1. We will attribute these m columns with variables L$_{1}$, ..., L$_{m}$, such that, 1 $\leqslant$ i $\leqslant$ m, L$_{i}$ = 1. We then form m clauses of a 3-SAT CNF, call them C$_{i}$, ..., C$_{m}$. Each C$_{i}$ relates to L$_{i}$, so that the boolean value of C$_{i}$ = ($z_{i1}$ $\lor$ $z_{i2}$ $\lor$ $z_{i3}$) = 1. Thus set any one of the $z_{i1}$, $z_{i2}$, or $z_{i3}$ to 1. It follows that all C$_{i}$ = 1, thus $\phi$ = (C$_{1}$ $\land$ C$_{2}$ $\land$ ... $\land$ C$_{m}$) Is satisfiable.\\
+Suppose that T and k of the mute prison problem are satisfiable. Also, suppose $\mid$S$\mid$ = m = k. Suppose T is an m x m matrix that resembles an identity matrix. We will attribute the m columns in T to variables L$_{1}$, ..., L$_{m}$, such that, 1 $\leqslant$ i $\leqslant$ m, and set L$_{i}$ = 1 if the column has at most one entry equal to 1, and set L$_{i}$ = 0 otherwise. Since T and k satisfy the problem then all L$_{i}$ = 1. We then form m clauses of a 3-SAT CNF, call them C$_{i}$, ..., C$_{m}$. Each C$_{i}$ relates to L$_{i}$, so that the boolean value of C$_{i}$ = ($z_{i1}$ $\lor$ $z_{i2}$ $\lor$ $z_{i3}$) = 1. Thus set any one of the $z_{i1}$, $z_{i2}$, or $z_{i3}$ to 1 (or true) to set C$_{i}$ to 1. If a column in T has more than one entry with 1 then clearly the mute prison problem would not be satistified and some C$_{i}$ = 0 (or false) and $\phi$ would not be satisfied. It follows that all C$_{i}$ equal 1 since all L$_{i}$ equal 1, thus $\phi$ = (C$_{1}$ $\land$ C$_{2}$ $\land$ ... $\land$ C$_{m}$) is satisfiable.\\
 
 So, $\phi$ of 3-SAT is satisfiable $\Leftrightarrow$ L and k of mute prison problem is satisfiable . Also, because the reduction was shown to be polynomial it is proven that the mute prison problem is NP-hard. $\blacksquare$\\
 
