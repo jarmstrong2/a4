@@ -246,7 +246,17 @@ b)\\
 x$_{u}$ + x$_{v}$ + x$_{(u, v)}$ $\geqslant$ 1\\
 }\\
 \underline{Explanation of Constraints:}\\
-\textbf{HENRY TO DO}\\
+
+a)\\
+ x$_{u}$ $\in$ \{0, 1\} represents whether or not vertex u is  in our vertex cover S.\\
+ If x$_{u}$ = 0 then it is not in our vertex cover, and if x$_{u}$ = 1, then it is in our vertex cover.\\
+~\\
+The second constraint x$_{(u, v)}$ $\in$ \{0, 1\} represents whether or not the edge (u, v) is covered by the vertices in our vertex cover S. If x$_{(u, v)}$ = 0 then it is not covered, if x$_{(u, v)}$ = 1 then it is covered by our vertex cover.\\
+~\\
+b)\\
+ x$_{u}$ + x$_{v}$ + x$_{(u, v)}$ $\geqslant$ 1 shows that x$_{u}$, x$_{v}$ , x$_{(u, v)}$ that one of them must at least be covered or in our vertex cover S. This constraints make sure that if the edge is (u,v) is not in our S, then either x$_{u}$ or x$_{v}$, one of them must have the value 1 and viceversa.\\
+~\\
+
 \underline{2.} LP relaxation:\\
 \underline{Minimize:}\\
 \hspace*{1cm}\parbox{15cm}{
