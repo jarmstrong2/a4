@@ -255,10 +255,10 @@ a)\\
  x$_{u}$ $\in$ \{0, 1\} represents whether or not vertex u is  in our vertex cover S.\\
  If x$_{u}$ = 0 then it is not in our vertex cover, and if x$_{u}$ = 1, then it is in our vertex cover.\\
 ~\\
-The second constraint x$_{(u, v)}$ $\in$ \{0, 1\} represents whether or not the edge (u, v) is covered by the vertices in our vertex cover S. If x$_{(u, v)}$ = 0 then it is not covered, if x$_{(u, v)}$ = 1 then it is covered by our vertex cover.\\
+The second constraint x$_{(u, v)}$ $\in$ \{0, 1\} represents whether or not the edge (u, v) is covered by the vertices in our vertex cover S. If x$_{(u, v)}$ = 0 then either vertex u or v are in the cover S, if x$_{(u, v)}$ = 1 then neither u nor v are in S.\\
 ~\\
 b)\\
- x$_{u}$ + x$_{v}$ + x$_{(u, v)}$ $\geqslant$ 1 shows that x$_{u}$, x$_{v}$ , x$_{(u, v)}$ that one of them must at least be covered or in our vertex cover S. This constraints make sure that if the edge is (u,v) is not in our S, then either x$_{u}$ or x$_{v}$, one of them must have the value 1 and viceversa.\\
+ x$_{u}$ + x$_{v}$ + x$_{(u, v)}$ $\geqslant$ 1 shows that if either u, or v (or both) are in the cover, then we have at least one,  x$_{u}$ or  x$_{v}$, equal to one. If u and v are not in the cover then  x$_{u}$ and  x$_{v}$ equals zero. So, in this case, x$_{(u, v)}$ must equal 1, and this indicates that the vertices in the edge (u, v) are not in the cover.\\
 ~\\
 
 \underline{2.} LP relaxation:\\
